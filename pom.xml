@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.5</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.yewick</groupId>
+    <artifactId>yewick-harness-java</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>yewick-harness-java</name>
+    <description>DeepSeek Harness Java - 基于 DDD 六边形架构的 Agent Harness</description>
+
+    <modules>
+        <module>yewick-harness-types</module>
+        <module>yewick-harness-api</module>
+        <module>yewick-harness-domain</module>
+        <module>yewick-harness-infrastructure</module>
+        <module>yewick-harness-app</module>
+        <module>yewick-harness-trigger</module>
+        <module>yewick-harness-start</module>
+    </modules>
+
+    <properties>
+        <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.yewick</groupId>
+                <artifactId>yewick-harness-types</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yewick</groupId>
+                <artifactId>yewick-harness-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yewick</groupId>
+                <artifactId>yewick-harness-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yewick</groupId>
+                <artifactId>yewick-harness-infrastructure</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yewick</groupId>
+                <artifactId>yewick-harness-app</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yewick</groupId>
+                <artifactId>yewick-harness-trigger</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yewick</groupId>
+                <artifactId>yewick-harness-start</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
