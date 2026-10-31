@@ -50,4 +50,4 @@ mvn -pl yewick-harness-start spring-boot:run
 
 ## 许可
 
-该项目为课程/学习用途的工程骨架。
+该项目仅为学习用途的工程骨架。
