@@ -3,12 +3,16 @@
 harness:
   llm:
     deepseek:
-      # 环境变量嵌套兜底：LLM_BASE_URL > DEEPSEEK_BASE_URL > 内置默认值
+      # 默认走本地 OpenAI 兼容代理；直连官方端点无需改文件，导出环境变量即可：
+      #   export DEEPSEEK_BASE_URL=https://api.deepseek.com/v1
+      # 嵌套兜底：LLM_BASE_URL > DEEPSEEK_BASE_URL > 内置默认值
       base-url: ${LLM_BASE_URL:${DEEPSEEK_BASE_URL:http://127.0.0.1:8777/v1}}
+      # 已设置 DEEPSEEK_API_KEY 即生效；缺失时为空串，不 fail-fast
       api-key: ${LLM_API_KEY:${DEEPSEEK_API_KEY:}}
       max-tokens: 8192
       context-window: 128000
-      default-model: ${LLM_DEFAULT_MODEL:${DEEPSEEK_DEFAULT_MODEL:glm-5.3-flash}}
+      # 兜底模型固定为本地代理别名；目标端点模型名不同时再导出 DEEPSEEK_DEFAULT_MODEL
+      default-model: ${LLM_DEFAULT_MODEL:${DEEPSEEK_DEFAULT_MODEL:deepseek-flash}}
 
   # 配置生效标记：用于观察 profile 覆盖优先级（standalone profile 会覆盖它）
   stage-name: dev-default
