@@ -11,25 +11,22 @@
 
 | 模块 | 层级 | 职责 |
 | --- | --- | --- |
-| `yewick-harness-types` | 类型层 | 跨层共享的基础领域对象模型（消息、工具等） |
-| `yewick-harness-api` | 接口契约层 | 对外暴露的接口与 DTO 定义（端口契约） |
-| `yewick-harness-domain` | 领域层 | 核心业务实体、领域服务与仓储端口 |
-| `yewick-harness-infrastructure` | 基础设施层 | 仓储实现、网关适配、配置与外部服务访问 |
-| `yewick-harness-app` | 应用层 | 应用服务编排与用例组装 |
-| `yewick-harness-trigger` | 触发器层 | HTTP / RPC / 事件监听等外部入口 |
-| `yewick-harness-start` | 启动装配层 | 应用装配与启动入口 |
+| `yewick-harness-types` | 类型层 | 共享类型与插件 SPI 契约：消息/工具模型、插件生命周期契约。不依赖任何内部模块 |
+| `yewick-harness-api` | 接口契约层 | 对外 API 契约：接口、DTO、统一返回体、SSE 流式契约。不依赖任何内部模块 |
+| `yewick-harness-domain` | 领域层 | 端口（Port）定义与领域服务。六边形架构的内核，只依赖 types |
+| `yewick-harness-infrastructure` | 基础设施层 | 适配器层：domain 端口的基础设施实现（持久化、LLM 适配、工具执行、插件加载等） |
+| `yewick-harness-case` | 用例编排层 | 策略树骨架与各业务用例流水线，串联 domain 能力响应 api 契约 |
+| `yewick-harness-trigger` | 触发器层 | 触发层：HTTP Controller、SSE 推送、鉴权拦截——外部请求进入系统的入口 |
+| `yewick-harness-app` | 启动装配层 | 唯一可启动模块，聚合 trigger + infrastructure，承载配置与启动 Runner |
 
 ## 依赖方向
 
 ```
-trigger ──▶ app ──▶ domain ──▶ types
-    │          │
-    │          └──────▶ api ──▶ types
-    │
-    └──▶ api ──▶ types
-
-infrastructure ──▶ domain / api / types
-start ──▶ trigger / app / infrastructure
+app ──▶ trigger ──▶ api
+ │         ├──▶ case ──▶ domain ──▶ types
+ │         │        └──▶ api
+ │         └──▶ infrastructure ──▶ domain ──▶ types
+ └──▶ infrastructure
 ```
 
 依赖始终由外层指向内层（领域核心），符合六边形架构「依赖倒置」的原则。
@@ -37,15 +34,14 @@ start ──▶ trigger / app / infrastructure
 ## 技术栈
 
 - Java 17
-- Spring Boot 3.3.x
+- Spring Boot 3.3.2
 - Maven 多模块
-- Lombok
 
 ## 快速开始
 
 ```bash
 mvn clean install
-mvn -pl yewick-harness-start spring-boot:run
+mvn -pl yewick-harness-app spring-boot:run
 ```
 
 ## 许可

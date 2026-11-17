@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -12,18 +12,6 @@
     </parent>
 
     <artifactId>yewick-harness-api</artifactId>
-    <name>yewick-harness-api</name>
-    <description>接口契约层：对外暴露的接口与 DTO 定义</description>
+    <description>对外 API 契约层：接口、DTO、统一返回体、SSE 流式契约。不依赖任何内部模块。</description>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.yewick</groupId>
-            <artifactId>yewick-harness-types</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 </project>

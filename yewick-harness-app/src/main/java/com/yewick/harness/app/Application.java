@@ -1,4 +1,4 @@
-package com.yewick.harness.start;
+package com.yewick.harness.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
