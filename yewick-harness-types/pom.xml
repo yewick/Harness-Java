@@ -14,4 +14,12 @@
     <artifactId>yewick-harness-types</artifactId>
     <description>共享类型与插件 SPI 契约层：消息/工具模型、插件生命周期契约。不依赖任何内部模块。</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
 </project>
